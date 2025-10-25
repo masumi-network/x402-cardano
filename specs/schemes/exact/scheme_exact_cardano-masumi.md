@@ -1,10 +1,13 @@
-# Scheme: exact on Cardano-Masumi
+# Scheme: exact on Cardano (Masumi Protocol)
 
 ## Summary
 
-This document specifies the `exact` payment scheme for the x402 protocol on Cardano. This scheme facilitates payments of Cardano Native Tokens. It utilizes the Masumi Smart Protocol, which offers additional refund mechanics & decision logging mechanisms in a decentralized way.
+This document specifies the `exact` payment scheme for the x402 protocol on Cardano. This scheme facilitates payments of Cardano Native Tokens. It utilises the Masumi Smart Protocol, which offers additional refund mechanics & decision logging mechanisms in a decentralised way.
 
 ## Protocol Flow
+
+![](../../../static/masumi-cardano-sequency-diagram-x402.png)
+
 
 The protocol flow for `exact` on Cardano is client-driven. 
 
@@ -19,7 +22,9 @@ The protocol flow for `exact` on Cardano is client-driven.
 
 ## Expanded `PaymentRequirementsResponse` Schema
 
-The PaymentRequirementsResponse has been expanded with fields in "extra" and needs to return information that is required to create a valid Masumi Smart Contract interaction.
+The PaymentRequirementsResponse has been expanded to include fields in "extra" and must return the information required to create a valid Masumi Smart Contract interaction.
+
+Schema:
 
 ```json
 {
@@ -55,10 +60,15 @@ The PaymentRequirementsResponse has been expanded with fields in "extra" and nee
 }
 ```
 
+Example:
+TODO
+
 
 ## `X-PAYMENT` Header Payload
 
-The X-PAYMENT header is base64 encoded and sent in the request from the client to the resource server when paying for a resource.
+The X-PAYMENT header is base64-encoded and sent in the client's request to the resource server when paying for a resource.
+
+Schema:
 
 ```json
 {
@@ -81,17 +91,27 @@ The X-PAYMENT header is base64 encoded and sent in the request from the client t
 }
 ```
 
+Example:
+
+TODO
+
 
 ## `X-PAYMENT-RESPONSE` Header Payload
 
-The `X-PAYMENT-RESPONSE` header is base64 encoded and returned to the client from the resource server.
+The `X-PAYMENT-RESPONSE` header is base64-encoded and returned to the client by the resource server.
 
 Once decoded, the `X-PAYMENT-RESPONSE` is a JSON string with the following properties:
+
+Schema:
 
 ```json
 {
   "success": "true | false",
-  "network": "cardano",
-  "type": "masumi | direct"
+  "network": "cardano-masumi"
+  "transaction": "transaction-id",
 }
 ```
+
+Example:
+
+TODO
